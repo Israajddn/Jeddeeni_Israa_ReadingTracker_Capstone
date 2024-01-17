@@ -2,6 +2,7 @@ import { React, useEffect, useState } from 'react';
 
 // components
 import BookDetails from '../components/BookDetails';
+import BookForm from '../components/BookForm';
 
 function Home() {
 
@@ -9,7 +10,7 @@ function Home() {
 
   useEffect(() => {
     const fetchBooks = async () => {
-      const response = await fetch('http://localhost:4000/api/readingTracker');
+      const response = await fetch('/api/readingTracker');
       const json = await response.json();
 
       if (response.ok) {
@@ -28,6 +29,7 @@ function Home() {
           <BookDetails key={book._id} book={book}/>
         ))}
       </div>
+      <BookForm />
     </div>
   )
 }
