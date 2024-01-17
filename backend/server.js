@@ -1,27 +1,37 @@
+//.env
 require('dotenv').config();
-const cors = require('cors')
-const port = process.env.PORT;
+
+// Connect/Express middleware 
+const cors = require('cors');
 
 const express = require('express');
+const mongoose = require('mongoose');
+const readingTrackerRoutes = require('./routes/readingTracker');
 
 // express app
 const app = express();
 
+app.use(cors());
+
 // middleware
+app.use(express.json());
+
 app.use((req, res, next) => {
     console.log(req.path, req.method);
     next();
 });
 
 // routes
-app.get('/', (req, res) => {
-    res.json({ mssg: 'Weclome to the app' });
-});;
+app.use('/api/readingTracker', readingTrackerRoutes);
 
-app.use(cors());
-
-// listen for requests
-app.listen(port,() => {
-    console.log(`Listening on port ${port}`);
-})
-;
+// connect to db
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => {
+        // listen for requests
+        app.listen(process.env.PORT, () => {
+            console.log('coonected to db & listening on port', process.env.PORT);
+        })
+    })
+    .catch((error) => {
+        console.log(error);
+    });
