@@ -1,38 +1,28 @@
 const express = require('express');
-const ReadingTracker = require('../models/readingTrackerModel');
+
+const {
+    createBook,
+    getBooks,
+    getBook,
+    deleteBook,
+    updateBook,
+} = require('../controllers/readingTrackerController')
 
 const router = express.Router();
 
 // GET all books
-router.get('/', (req, res) => {
-    res.json({mssg: 'Get all books'});
-});
+router.get('/', getBooks);
 
 // GET a single book
-router.get('/:id', (req, res) => {
-    res.json({mssg: 'Get a single book'});
-});
+router.get('/:id', getBook);
 
 // POST a new book
-router.post('/', async (req, res) => {
-    const {title, author, dateStarted, dateFinished} = req.body;
-    // add doc to db
-    try {
-        const readingTracker = await ReadingTracker.create({title, author, dateStarted, dateFinished});
-        res.status(200).json(readingTracker);
-    } catch (error){
-        res.status(400).json({error: error.message});
-    }
-});
+router.post('/', createBook);
 
 // DELETE a book
-router.delete('/:id', (req, res) => {
-    res.json({mssg: 'Delete a book'});
-});
+router.delete('/:id', deleteBook);
 
 // UPDATE a book
-router.patch('/:id', (req, res) => {
-    res.json({mssg: 'Update a book'});
-});
+router.patch('/:id', updateBook);
 
 module.exports = router;
