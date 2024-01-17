@@ -1,4 +1,5 @@
 const express = require('express');
+const ReadingTracker = require('../models/readingTrackerModel');
 
 const router = express.Router();
 
@@ -13,8 +14,15 @@ router.get('/:id', (req, res) => {
 });
 
 // POST a new book
-router.post('/', (req, res) => {
-    res.json({mssg: 'Post a book'});
+router.post('/', async (req, res) => {
+    const {title, author, dateStarted, dateFinished} = req.body;
+    // add doc to db
+    try {
+        const readingTracker = await ReadingTracker.create({title, author, dateStarted, dateFinished});
+        res.status(200).json(readingTracker);
+    } catch (error){
+        res.status(400).json({error: error.message});
+    }
 });
 
 // DELETE a book
