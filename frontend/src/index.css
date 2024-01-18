@@ -4,7 +4,7 @@
 /* layout */
 :root {
   --primary:#6c584c;
-  --error:#ff4d6d
+  --error:#bc4749
 }
 body {
   background: #d8e2dc;
@@ -95,7 +95,7 @@ form button {
 }
 div.error{
   padding: 10px;
-  background: #ffefef;
+  background: #f2e8cf;
   border: 1px solid var(--error);
   color: var(--error);
   border-radius: 4px;
