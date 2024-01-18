@@ -1,4 +1,5 @@
-import { React, useEffect, useState } from 'react';
+import { React, useEffect } from 'react';
+import { useBooksContext } from '../hooks/useBooksContext';
 
 // components
 import BookDetails from '../components/BookDetails';
@@ -6,7 +7,7 @@ import BookForm from '../components/BookForm';
 
 function Home() {
 
-  const [books, setBooks] = useState(null);
+  const {books, dispatch} = useBooksContext();   
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -14,13 +15,13 @@ function Home() {
       const json = await response.json();
 
       if (response.ok) {
-        setBooks(json);
+        dispatch({type:'SET_BOOKS', payload: json})
       }
     }
 
     fetchBooks();
 
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className='home'>

@@ -1,6 +1,9 @@
-import { React, useState } from 'react'
+import { React, useState } from 'react';
+import { useBooksContext } from '../hooks/useBooksContext';
 
 function BookForm() {
+
+    const {dispatch} = useBooksContext();
 
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
@@ -32,6 +35,7 @@ function BookForm() {
             setDateFinished('');
             setError(null);
             console.log('new book added', json);
+            dispatch({type:'CREATE_BOOK', payload: json})
         }
     }
 
