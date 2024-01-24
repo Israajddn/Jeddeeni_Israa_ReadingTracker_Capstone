@@ -32,6 +32,8 @@ const createBook = async (req, res) => {
 
     let emptyFields = []
 
+    console.log(title)
+
     if (!title) {
         emptyFields.push('title')
     }
@@ -39,15 +41,16 @@ const createBook = async (req, res) => {
         emptyFields.push('author')
     }
     if (!dateStarted) {
-        emptyFields.push('dateStarted')
+        emptyFields.push('date Started')
     }
     if (!dateFinished) {
-        emptyFields.push('dateFinished')
+        emptyFields.push('date Finished')
     }
     if (emptyFields.length > 0) {
-        return res.status(400).json({ error: 'Please fill in all the fields ', emptyFields })
+        console.log(emptyFields)
+        return res.status(400).json({ error: `Please fill in the highlighted fields ${emptyFields}`, emptyFields })
     }
-
+    
     // add doc to db
     try {
         const book = await ReadingTracker.create({ title, author, dateStarted, dateFinished });

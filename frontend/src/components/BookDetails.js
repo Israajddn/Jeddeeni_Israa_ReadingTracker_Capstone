@@ -28,6 +28,7 @@ function BookDetails({ book }) {
       <p><strong>Date Started: </strong>{formatDate(book.dateStarted)}</p>
       <p><strong>Date Finished: </strong>{formatDate(book.dateFinished)}</p>
       <span className='material-symbols-outlined' onClick={handleClick}>delete</span>
+      
     </div>
   )
 }

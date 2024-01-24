@@ -1,0 +1,3 @@
+- My App is a simple Reading Tracker. 
+- It currently lets anyone add a new book and when they submit the form it saves it to the database and also updates some global context state in the front end so that the book shows in the UI as well.
+- Users can also delete books as well by clicking the trash icon and that will delete it from the UI and also from the database.

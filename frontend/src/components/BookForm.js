@@ -67,7 +67,7 @@ function BookForm() {
                 type="date"
                 onChange={(e) => setDateStarted(e.target.value)}
                 value={dateStarted}
-                className={emptyFields.includes('dateStarted') ? 'error' : ''}
+                className={emptyFields.includes('date Started') ? 'error' : ''}
             />
 
             <label>Date Finished:</label>
@@ -75,7 +75,7 @@ function BookForm() {
                 type="date"
                 onChange={(e) => setDateFinished(e.target.value)}
                 value={dateFinished}
-                className={emptyFields.includes('dateFinished') ? 'error' : ''}
+                className={emptyFields.includes('date Finished') ? 'error' : ''}
             />
 
             <button>Add Book</button>
